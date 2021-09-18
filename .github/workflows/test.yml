@@ -6,7 +6,7 @@ on:
   pull_request:
 jobs:
   test-check:
-    name: runner / <linter-name> (github-check)
+    name: runner / tsc (github-check)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,7 +19,7 @@ jobs:
 
   test-pr-check:
     if: github.event_name == 'pull_request'
-    name: runner / <linter-name> (github-pr-check)
+    name: runner / tsc (github-pr-check)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -33,7 +33,7 @@ jobs:
 
   test-pr-review:
     if: github.event_name == 'pull_request'
-    name: runner / <linter-name> (github-pr-review)
+    name: runner / tsc (github-pr-review)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
