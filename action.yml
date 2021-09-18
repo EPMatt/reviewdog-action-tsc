@@ -1,43 +1,61 @@
-name: 'TODO: Run <linter-name> with reviewdog'
-description: 'TODO: 🐶 Run <linter-name> with reviewdog on pull requests to improve code review experience.'
-author: 'TODO: <your-name>'
+name: 'Run tsc with reviewdog'
+description: '🐶 Run tsc with reviewdog on pull requests to improve code review experience.'
+author: 'EPMatt'
 inputs:
   github_token:
     description: 'GITHUB_TOKEN'
     default: '${{ github.token }}'
+    required: false
   workdir:
-    description: 'Working directory relative to the root directory.'
+    description: |
+      Working directory relative to the root directory.
+      Default is `.`.
     default: '.'
+    required: false
   ### Flags for reviewdog ###
   level:
-    description: 'Report level for reviewdog [info,warning,error]'
+    description: |
+      Report level for reviewdog [info,warning,error].
+      Default is `error`.
     default: 'error'
+    required: false
   reporter:
-    description: 'Reporter of reviewdog command [github-pr-check,github-pr-review].'
+    description: |
+      Reporter of reviewdog command [github-pr-check,github-pr-review].
+      Default is `github-pr-check`.
     default: 'github-pr-check'
+    required: false
   filter_mode:
     description: |
       Filtering mode for the reviewdog command [added,diff_context,file,nofilter].
-      Default is added.
+      Default is `added`.
     default: 'added'
+    required: false
   fail_on_error:
     description: |
-      Exit code for reviewdog when errors are found [true,false]
+      Exit code for reviewdog when errors are found [true,false].
       Default is `false`.
     default: 'false'
+    required: false
   reviewdog_flags:
-    description: 'Additional reviewdog flags'
+    description: |
+      Additional reviewdog flags.
+      Default is ``.
     default: ''
-  ### Flags for <linter-name> ###
-  locale:
-    description: '-locale flag of misspell. (US/UK)'
+    required: false
+  ### Flags for tsc ###
+  tsc_flags:
+    description: |
+      Flags and args to pass to tsc.
+      Default is ``.
     default: ''
+    required: false
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: 'composite'
+  steps:
+    - run: $GITHUB_ACTION_PATH/script.sh
+      shell: bash
 
-# Ref: https://haya14busa.github.io/github-action-brandings/
-# TODO: update branding if you want.
 branding:
-  icon: 'check'
+  icon: 'settings'
   color: 'blue'
