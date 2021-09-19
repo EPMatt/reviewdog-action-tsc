@@ -129,7 +129,7 @@ jobs:
 
 ### How do I run the action on multiple TS modules?
 
-For more complex setups which require to run the action on multiple TS modules, simply run the action once for each single module, changing the `workdir` and `tsc_flags` inputs accordingly.
+For more complex setups which require to run the action on multiple TS modules, run the action once for each single module, changing the `workdir` and `tsc_flags` inputs accordingly.
 
 ```yaml
 name: reviewdog
@@ -170,4 +170,4 @@ Any feedback, suggestion or improvement is highly appreciated!
 
 If you want to show your appreciation and support maintenance and future development of this action, please consider **making a small donation [here](https://www.buymeacoffee.com/epmatt)**. :coffee:
 
-Moreover, if you like this project don't forget to **leave a star on [GitHub](https://github.com/EPMatt/reviewdog-action-tsc)**. Such a simple, quick and zero-cost act will allow the action to get more visibility across the community, resulting in more people getting to know and using it. :star:
+Moreover, if you like this project don't forget to **leave a star on [GitHub](https://github.com/EPMatt/reviewdog-action-tsc)**. Such an easy, quick and zero-cost act will allow the action to get more visibility across the community, resulting in more people getting to know and using it. :star:
