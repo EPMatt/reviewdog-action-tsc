@@ -25,14 +25,15 @@ else
 
   echo "::group::📝 Running tsc with reviewdog 🐶 ..."
 
-  "$(npm bin)"/tsc "${INPUT_TSC_FLAGS:-"."}" \
+  # shellcheck disable=SC2086
+  "$(npm bin)"/tsc ${INPUT_TSC_FLAGS:-"."} \
     | reviewdog -f=tsc \
       -name="${INPUT_TOOL_NAME}" \
       -reporter="${INPUT_REPORTER:-github-pr-review}" \
       -filter-mode="${INPUT_FILTER_MODE}" \
       -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
       -level="${INPUT_LEVEL}" \
-      "${INPUT_REVIEWDOG_FLAGS}"
+      ${INPUT_REVIEWDOG_FLAGS}
 
   reviewdog_rc=$?
   echo "::endgroup::"
