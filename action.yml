@@ -55,6 +55,16 @@ runs:
   steps:
     - run: $GITHUB_ACTION_PATH/script.sh
       shell: bash
+      env:
+        INPUT_GITHUB_TOKEN: ${{ inputs.github_token }}
+        INPUT_WORKDIR: ${{ inputs.workdir }}
+        INPUT_LEVEL: ${{ inputs.level }}
+        INPUT_REPORTER: ${{ inputs.reporter }}
+        INPUT_FILTER_MODE: ${{ inputs.filter_mode }}
+        INPUT_FAIL_ON_ERROR: ${{ inputs.fail_on_error }}
+        INPUT_REVIEWDOG_FLAGS: ${{ inputs.reviewdog_flags }}
+        INPUT_TSC_FLAGS: ${{ inputs.tsc_flags }}
+
 
 branding:
   icon: 'settings'
