@@ -12,7 +12,7 @@
 
 ![github-pr-check demo](https://user-images.githubusercontent.com/30753195/133942341-15cd70d7-fb37-44c1-9249-c41580872a2f.png)
 
-This GitHub Action runs [tsc](https://www.typescriptlang.org/docs/handbook/compiler-options.html) with [reviewdog](https://github.com/reviewdog/reviewdog) to improve code review experience for TypeScript-based modules.
+This GitHub Action runs [tsc](https://www.typescriptlang.org/docs/handbook/compiler-options.html) with [reviewdog](https://github.com/reviewdog/reviewdog) to improve code checking and review experience for TypeScript-based modules. :dog:
 
 The action will first run `tsc`, then passing the compiler's output to reviewdog for further processing. Reviewdog will then provide a GitHub check either with code annotations as displayed above or with a Pull Request review, depending on the action configuration.
 

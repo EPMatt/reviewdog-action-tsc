@@ -1,5 +1,5 @@
 name: 'Run tsc with reviewdog'
-description: '🐶 Run tsc with reviewdog on pull requests to improve code review experience.'
+description: '🐶 Run tsc with reviewdog to improve code checking and review experience for TypeScript-based modules.'
 author: 'EPMatt'
 inputs:
   github_token:
