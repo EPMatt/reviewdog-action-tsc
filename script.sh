@@ -6,22 +6,27 @@ TEMP_PATH="$(mktemp -d)"
 PATH="${TEMP_PATH}:$PATH"
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
-echo '::group::🐶 Installing reviewdog ... https://github.com/reviewdog/reviewdog'
+echo "::group::🐶 Installing reviewdog ... https://github.com/reviewdog/reviewdog"
 curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh | sh -s -- -b "${TEMP_PATH}" "${REVIEWDOG_VERSION}" 2>&1
-echo '::endgroup::'
+echo "::endgroup::"
 
 if [ ! -f "$(npm bin)/tsc" ]; then
-  echo '::group:: Running `npm install` to install tsc ...'
+  echo "::group::🔄 Running `npm install` to install tsc ..."
   npm install
-  echo '::endgroup::'
+  echo "::endgroup::"
 fi
 
-echo "tsc version:$($(npm bin)/tsc --version)"
+if [ ! -f "$(npm bin)/tsc" ]; then
+  echo "❌ Unable to locate or install tsc. Did you provide a workdir which contains a valide package.json?"
+  exit 1
+else
 
-echo '::group:: Running tsc with reviewdog 🐶 ...'
+  echo "ℹ️ tsc version:"$("$(npm bin)"/tsc --version)""
 
-$(npm bin)/tsc ${INPUT_TSC_FLAGS:-'.'} \
-  | reviewdog -f=tsc \
+  echo "::group::📝 Running tsc with reviewdog 🐶 ..."
+
+  "$(npm bin)"/tsc ${INPUT_TSC_FLAGS:-"."} \
+    | reviewdog -f=tsc \
       -name="${INPUT_TOOL_NAME}" \
       -reporter="${INPUT_REPORTER:-github-pr-review}" \
       -filter-mode="${INPUT_FILTER_MODE}" \
@@ -29,6 +34,8 @@ $(npm bin)/tsc ${INPUT_TSC_FLAGS:-'.'} \
       -level="${INPUT_LEVEL}" \
       ${INPUT_REVIEWDOG_FLAGS}
 
-reviewdog_rc=$?
-echo '::endgroup::'
-exit $reviewdog_rc
+  reviewdog_rc=$?
+  echo "::endgroup::"
+  exit $reviewdog_rc
+
+fi
