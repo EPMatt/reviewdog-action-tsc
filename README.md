@@ -1,4 +1,4 @@
-# action-template
+# reviewdog-action-tsc
 
 ![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen) 
 [![Test](https://github.com/EPMatt/reviewdog-action-tsc/workflows/Tests/badge.svg)](https://github.com/EPMatt/reviewdog-action-tsc/actions?query=workflow%3ATest)
@@ -8,8 +8,9 @@
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/EPMatt/reviewdog-action-tsc?logo=github&sort=semver)](https://github.com/EPMatt/reviewdog-action-tsc/releases)
 [![action-bumpr supported](https://img.shields.io/badge/bumpr-supported-ff69b4?logo=github&link=https://github.com/haya14busa/action-bumpr)](https://github.com/haya14busa/action-bumpr)
 
-![github-pr-review demo](https://user-images.githubusercontent.com/3797062/73162963-4b8e2b00-4132-11ea-9a3f-f9c6f624c79f.png)
-![github-pr-check demo](https://user-images.githubusercontent.com/3797062/73163032-70829e00-4132-11ea-8481-f213a37db354.png)
+<a href="https://www.buymeacoffee.com/epmatt"><img width="150" alt="yellow-button" src="https://user-images.githubusercontent.com/30753195/133942263-5fef0166-4ab5-4529-b931-37b5d14f02bf.png"></a>
+
+![github-pr-check demo](https://user-images.githubusercontent.com/30753195/133942341-15cd70d7-fb37-44c1-9249-c41580872a2f.png)
 
 This GitHub Action runs [tsc](https://www.typescriptlang.org/docs/handbook/compiler-options.html) with [reviewdog](https://github.com/reviewdog/reviewdog) to improve code review experience for TypeScript-based modules.
 
