@@ -1,114 +1,172 @@
 # action-template
 
-<!-- TODO: replace reviewdog/action-template with your repo name -->
-[![Test](https://github.com/reviewdog/action-template/workflows/Test/badge.svg)](https://github.com/reviewdog/action-template/actions?query=workflow%3ATest)
-[![reviewdog](https://github.com/reviewdog/action-template/workflows/reviewdog/badge.svg)](https://github.com/reviewdog/action-template/actions?query=workflow%3Areviewdog)
-[![depup](https://github.com/reviewdog/action-template/workflows/depup/badge.svg)](https://github.com/reviewdog/action-template/actions?query=workflow%3Adepup)
-[![release](https://github.com/reviewdog/action-template/workflows/release/badge.svg)](https://github.com/reviewdog/action-template/actions?query=workflow%3Arelease)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/reviewdog/action-template?logo=github&sort=semver)](https://github.com/reviewdog/action-template/releases)
+![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen) 
+[![Test](https://github.com/EPMatt/reviewdog-action-tsc/workflows/Tests/badge.svg)](https://github.com/EPMatt/reviewdog-action-tsc/actions?query=workflow%3ATest)
+[![Code Quality](https://github.com/EPMatt/reviewdog-action-tsc/workflows/Code%20Quality/badge.svg)](https://github.com/EPMatt/reviewdog-action-tsc/actions?query=workflow%3Areviewdog)
+[![Deps auto update](https://github.com/EPMatt/reviewdog-action-tsc/workflows/Deps%20auto%20update/badge.svg)](https://github.com/EPMatt/reviewdog-action-tsc/actions?query=workflow%3Adepup)
+[![Release](https://github.com/EPMatt/reviewdog-action-tsc/workflows/Release/badge.svg)](https://github.com/EPMatt/reviewdog-action-tsc/actions?query=workflow%3Arelease)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/EPMatt/reviewdog-action-tsc?logo=github&sort=semver)](https://github.com/EPMatt/reviewdog-action-tsc/releases)
 [![action-bumpr supported](https://img.shields.io/badge/bumpr-supported-ff69b4?logo=github&link=https://github.com/haya14busa/action-bumpr)](https://github.com/haya14busa/action-bumpr)
 
 ![github-pr-review demo](https://user-images.githubusercontent.com/3797062/73162963-4b8e2b00-4132-11ea-9a3f-f9c6f624c79f.png)
 ![github-pr-check demo](https://user-images.githubusercontent.com/3797062/73163032-70829e00-4132-11ea-8481-f213a37db354.png)
 
-This is a template repository for [reviewdog](https://github.com/reviewdog/reviewdog) action with release automation.
-Click `Use this template` button to create your reviewdog action :dog:!
+This GitHub Action runs [tsc](https://www.typescriptlang.org/docs/handbook/compiler-options.html) with [reviewdog](https://github.com/reviewdog/reviewdog) to improve code review experience for TypeScript-based modules.
 
-If you want to create your own reviewdog action from scratch without using this
-template, please check and copy release automation flow.
-It's important to manage release workflow and sync reviewdog version for all
-reviewdog actions.
+The action will first run `tsc`, then passing the compiler's output to reviewdog for further processing. Reviewdog will then provide a GitHub check either with code annotations as displayed above or with a Pull Request review, depending on the action configuration.
 
-This repo contains a sample action to run [misspell](https://github.com/client9/misspell).
+For full documentation regarding reviewdog, its features and configuration options, please visit the [reviewdog repository](https://github.com/reviewdog/reviewdog).
 
 ## Input
 
-<!-- TODO: update -->
 ```yaml
 inputs:
   github_token:
     description: 'GITHUB_TOKEN'
     default: '${{ github.token }}'
+    required: false
   workdir:
-    description: 'Working directory relative to the root directory.'
+    description: |
+      Working directory relative to the root directory.
+      This is where the action will look for a
+      package.json which declares typescript as a dependency.
+      Default is `.`.
     default: '.'
+    required: false
   ### Flags for reviewdog ###
   level:
-    description: 'Report level for reviewdog [info,warning,error]'
+    description: |
+      Report level for reviewdog [info,warning,error].
+      Default is `error`.
     default: 'error'
+    required: false
   reporter:
-    description: 'Reporter of reviewdog command [github-pr-check,github-check,github-pr-review].'
+    description: |
+      Reporter of reviewdog command [github-pr-check,github-pr-review].
+      Default is `github-pr-check`.
     default: 'github-pr-check'
+    required: false
   filter_mode:
     description: |
       Filtering mode for the reviewdog command [added,diff_context,file,nofilter].
-      Default is added.
+      Default is `added`.
     default: 'added'
+    required: false
   fail_on_error:
     description: |
-      Exit code for reviewdog when errors are found [true,false]
+      Exit code for reviewdog when errors are found [true,false].
       Default is `false`.
     default: 'false'
+    required: false
   reviewdog_flags:
-    description: 'Additional reviewdog flags'
+    description: |
+      Additional reviewdog flags.
+      Default is ``.
     default: ''
-  ### Flags for <linter-name> ###
-  locale:
-    description: '-locale flag of misspell. (US/UK)'
+    required: false
+  ### Flags for tsc ###
+  tsc_flags:
+    description: |
+      Flags and args to pass to tsc.
+      Default is ``.
     default: ''
+    required: false
 ```
 
 ## Usage
-<!-- TODO: update. replace `template` with the linter name -->
+
+This example shows how to configure the action to run on any event occurring on a Pull Request. Reviewdog will report tsc output messages as warnings by opening a code review on the Pull Request which triggered the workflow.
 
 ```yaml
 name: reviewdog
 on: [pull_request]
 jobs:
-  # TODO: change `linter_name`.
-  linter_name:
-    name: runner / <linter-name>
+  tsc:
+    name: runner / tsc
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: reviewdog/action-template@v1
+      - uses: EPMatt/reviewdog-action-tsc@v1
         with:
           github_token: ${{ secrets.github_token }}
-          # Change reviewdog reporter if you need [github-pr-check,github-check,github-pr-review].
+          # Change reviewdog reporter if you need
+          # [github-pr-check,github-check,github-pr-review].
+          # More about reviewdog reporters at
+          # https://github.com/reviewdog/reviewdog#reporters
           reporter: github-pr-review
-          # Change reporter level if you need.
-          # GitHub Status Check won't become failure with warning.
+          # Change reporter level if you need
+          # [info,warning,error].
+          # More about reviewdog reporter level at
+          # https://github.com/reviewdog/reviewdog#reporters
           level: warning
 ```
 
-## Development
+## FAQs
 
-### Release
+### How do I run the action on a TS module in a subfolder?
 
-#### [haya14busa/action-bumpr](https://github.com/haya14busa/action-bumpr)
-You can bump version on merging Pull Requests with specific labels (bump:major,bump:minor,bump:patch).
-Pushing tag manually by yourself also work.
+To run the action on a TS module in a subfolder, you can change the path where the action will run with the `workdir` input.
 
-#### [haya14busa/action-update-semver](https://github.com/haya14busa/action-update-semver)
+```yaml
+name: reviewdog
+on: [pull_request]
+jobs:
+  tsc:
+    name: runner / tsc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: EPMatt/reviewdog-action-tsc@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          level: warning
+          # The action will look for a package.json file with typescript
+          # declared as a dependency located in the "foo" subfolder.
+          workdir: foo
+```
 
-This action updates major/minor release tags on a tag push. e.g. Update v1 and v1.2 tag when released v1.2.3.
-ref: https://help.github.com/en/articles/about-actions#versioning-your-action
+### How do I run the action on multiple TS modules?
 
-### Lint - reviewdog integration
+For more complex setups which require to run the action on multiple TS modules, simply run the action once for each single module, changing the `workdir` and `tsc_flags` inputs accordingly.
 
-This reviewdog action template itself is integrated with reviewdog to run lints
-which is useful for Docker container based actions.
+```yaml
+name: reviewdog
+on: [pull_request]
+jobs:
+  tsc:
+    name: runner / tsc
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # Run action for the "submodule1" module
+      - uses: EPMatt/reviewdog-action-tsc@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          level: warning
+          # The action will look for a package.json file with typescript
+          # declared as a dependency located in the "submodule1" subfolder.
+          workdir: submodule1
+      # Run action for the "submodule2" module
+      - uses: EPMatt/reviewdog-action-tsc@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          level: warning
+          # The action will look for a package.json file with typescript
+          # declared as a dependency located in the "submodule2" subfolder.
+          workdir: submodule2
+```
 
-![reviewdog integration](https://user-images.githubusercontent.com/3797062/72735107-7fbb9600-3bde-11ea-8087-12af76e7ee6f.png)
+## Contributing
 
-Supported linters:
+Want to improve this action? Cool! :rocket: Please make sure to read the [Contribution Guidelines](CONTRIBUTING.md) prior submitting your work.
 
-- [reviewdog/action-shellcheck](https://github.com/reviewdog/action-shellcheck)
-- [reviewdog/action-hadolint](https://github.com/reviewdog/action-hadolint)
-- [reviewdog/action-misspell](https://github.com/reviewdog/action-misspell)
+Any feedback, suggestion or improvement is highly appreciated!
 
-### Dependencies Update Automation
-This repository uses [reviewdog/action-depup](https://github.com/reviewdog/action-depup) to update
-reviewdog version.
+## Sponsoring
 
-[![reviewdog depup demo](https://user-images.githubusercontent.com/3797062/73154254-170e7500-411a-11ea-8211-912e9de7c936.png)](https://github.com/reviewdog/action-template/pull/6)
+If you want to show your appreciation and support maintenance and future development of this action, please consider **making a small donation [here](https://www.buymeacoffee.com/epmatt)**. :coffee:
+
+Moreover, if you like this project don't forget to **leave a star on [GitHub](https://github.com/EPMatt/reviewdog-action-tsc)**. Such a simple, quick and zero-cost act will allow the action to get more visibility across the community, resulting in more people getting to know and using it. :star:

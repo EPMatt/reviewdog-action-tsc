@@ -9,6 +9,8 @@ inputs:
   workdir:
     description: |
       Working directory relative to the root directory.
+      This is where the action will look for a
+      package.json which declares typescript as a dependency.
       Default is `.`.
     default: '.'
     required: false
