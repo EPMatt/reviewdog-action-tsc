@@ -1,4 +1,4 @@
-name: reviewdog
+name: Code Quality
 on:
   push:
     branches:
