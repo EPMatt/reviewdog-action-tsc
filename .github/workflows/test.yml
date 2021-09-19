@@ -17,6 +17,14 @@ jobs:
           level: error
           workdir: ./testdata
           tsc_flags: --project passing
+      - id: action_failing_test
+        uses: ./
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          level: info
+          workdir: ./testdata
+          tsc_flags: --project failing
 
   test-pr-check:
     if: github.event_name == 'pull_request'
@@ -31,6 +39,14 @@ jobs:
           level: error
           workdir: ./testdata
           tsc_flags: --project passing
+      - id: action_failing_test
+        uses: ./
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          level: info
+          workdir: ./testdata
+          tsc_flags: --project failing
 
   test-pr-review:
     if: github.event_name == 'pull_request'
@@ -45,3 +61,11 @@ jobs:
           level: error
           workdir: ./testdata
           tsc_flags: --project passing
+      - id: action_failing_test
+        uses: ./
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          level: info
+          workdir: ./testdata
+          tsc_flags: --project failing
