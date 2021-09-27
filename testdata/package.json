@@ -12,6 +12,6 @@
     "typescript": "^4.4.3"
   },
   "dependencies": {
-    "@types/node": "^16.9.4"
+    "@types/node": "^16.10.1"
   }
 }
