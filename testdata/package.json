@@ -9,7 +9,7 @@
   "author": "Matteo Agnoletto",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.3"
   },
   "dependencies": {
     "@types/node": "^16.11.11"
