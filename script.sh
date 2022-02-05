@@ -18,7 +18,7 @@ if [ ! -f "$(npm bin)"/tsc ]; then
 fi
 
 if [ ! -f "$(npm bin)"/tsc ]; then
-  echo "❌ Unable to locate or install tsc. Did you provide a workdir which contains a valide package.json?"
+  echo "❌ Unable to locate or install tsc. Did you provide a workdir which contains a valid package.json?"
   exit 1
 else
 
