@@ -27,7 +27,7 @@ else
   echo "::group::📝 Running tsc with reviewdog 🐶 ..."
 
   # shellcheck disable=SC2086
-  "$(npm bin)"/tsc ${INPUT_TSC_FLAGS:-"."} \
+  "$(npm bin)"/tsc ${INPUT_TSC_FLAGS} \
     | reviewdog -f=tsc \
       -name="${INPUT_TOOL_NAME}" \
       -reporter="${INPUT_REPORTER:-github-pr-review}" \
