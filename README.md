@@ -161,7 +161,7 @@ jobs:
 ```
 
 ### Why can't I see the results?
-Try looking into the `filter_mode` options explained [here](https://github.com/reviewdog/reviewdog#filter-mode). Typescript errors will sometimes appear in lines or files that weren't modified by the commit the workflow run is associated with, which instead get filtered with the default `added` option.
+Try looking into the `filter_mode` options explained [here](https://github.com/reviewdog/reviewdog#filter-mode). TypeScript errors will sometimes appear in lines or files that weren't modified by the commit the workflow run is associated with, which instead get filtered with the default `added` option.
 
 ## Contributing
 
