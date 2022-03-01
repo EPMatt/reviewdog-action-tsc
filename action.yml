@@ -45,6 +45,10 @@ inputs:
       Default is ``.
     default: ''
     required: false
+  tool_name:
+    description: 'Tool name to use for reviewdog reporter'
+    default: 'tsc'
+    required: false
   ### Flags for tsc ###
   tsc_flags:
     description: |
@@ -68,6 +72,7 @@ runs:
         INPUT_FILTER_MODE: ${{ inputs.filter_mode }}
         INPUT_FAIL_ON_ERROR: ${{ inputs.fail_on_error }}
         INPUT_REVIEWDOG_FLAGS: ${{ inputs.reviewdog_flags }}
+        INPUT_TOOL_NAME: ${{ inputs.tool_name }}
         INPUT_TSC_FLAGS: ${{ inputs.tsc_flags }}
 
 
