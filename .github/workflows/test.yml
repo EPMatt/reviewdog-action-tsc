@@ -33,7 +33,7 @@ jobs:
           tsc_flags: --project failing
         continue-on-error: true
       # The test passes if the action fails in the failing test
-      - if: ${{ steps.action_failing_test.outcome != "failure" }}
+      - if: ${{ steps.action_failing_test.outcome != 'failure' }}
         run: exit 1
 
   test-pr-check:
@@ -65,7 +65,7 @@ jobs:
           tsc_flags: --project failing
         continue-on-error: true
       # The test passes if the action fails in the failing test
-      - if: ${{ steps.action_failing_test.outcome != "failure" }}
+      - if: ${{ steps.action_failing_test.outcome != 'failure' }}
         run: exit 1
 
   test-pr-review:
@@ -97,5 +97,5 @@ jobs:
           tsc_flags: --project failing
         continue-on-error: true
       # The test passes if the action fails in the failing test
-      - if: ${{ steps.action_failing_test.outcome != "failure" }}
+      - if: ${{ steps.action_failing_test.outcome != 'failure' }}
         run: exit 1
