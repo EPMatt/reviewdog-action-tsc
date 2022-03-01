@@ -15,7 +15,10 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
           level: error
+          filter_mode: nofilter
           workdir: ./testdata
+          tool_name: tsc-github-check
+          fail_on_error: true
           tsc_flags: --project passing
       - id: action_failing_test
         uses: ./
@@ -23,8 +26,15 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
           level: info
+          filter_mode: nofilter
           workdir: ./testdata
+          tool_name: tsc-github-check
+          fail_on_error: true
           tsc_flags: --project failing
+        continue-on-error: true
+      # The test passes if the action fails in the failing test
+      - if: ${{ steps.action_failing_test.outcome != "failure" }}
+        run: exit 1
 
   test-pr-check:
     if: github.event_name == 'pull_request'
@@ -37,16 +47,26 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
           level: error
+          filter_mode: nofilter
           workdir: ./testdata
+          tool_name: tsc-github-pr-check
+          fail_on_error: true
           tsc_flags: --project passing
       - id: action_failing_test
         uses: ./
         with:
           github_token: ${{ secrets.github_token }}
-          reporter: github-check
+          reporter: github-pr-check
           level: info
+          filter_mode: nofilter
           workdir: ./testdata
+          tool_name: tsc-github-pr-check
+          fail_on_error: true
           tsc_flags: --project failing
+        continue-on-error: true
+      # The test passes if the action fails in the failing test
+      - if: ${{ steps.action_failing_test.outcome != "failure" }}
+        run: exit 1
 
   test-pr-review:
     if: github.event_name == 'pull_request'
@@ -59,13 +79,23 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
           level: error
+          filter_mode: nofilter
           workdir: ./testdata
+          tool_name: tsc-github-pr-review
+          fail_on_error: true
           tsc_flags: --project passing
       - id: action_failing_test
         uses: ./
         with:
           github_token: ${{ secrets.github_token }}
-          reporter: github-check
+          reporter: github-pr-review
           level: info
+          filter_mode: nofilter
           workdir: ./testdata
+          tool_name: tsc-github-pr-review
+          fail_on_error: true
           tsc_flags: --project failing
+        continue-on-error: true
+      # The test passes if the action fails in the failing test
+      - if: ${{ steps.action_failing_test.outcome != "failure" }}
+        run: exit 1
