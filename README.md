@@ -65,6 +65,10 @@ inputs:
       Default is ``.
     default: ''
     required: false
+  tool_name:
+    description: 'Tool name to use for reviewdog reporter'
+    default: 'tsc'
+    required: false
   ### Flags for tsc ###
   tsc_flags:
     description: |

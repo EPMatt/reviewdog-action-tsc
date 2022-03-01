@@ -31,6 +31,8 @@ This reviewdog action template itself is integrated with reviewdog to run lint c
 Supported linters:
 
 - [reviewdog/action-shellcheck](https://github.com/reviewdog/action-shellcheck)
+- [reviewdog/action-shfmt](https://github.com/reviewdog/action-shfmt)
+- [reviewdog/action-actionlint](https://github.com/reviewdog/action-actionlint)
 - [reviewdog/action-misspell](https://github.com/reviewdog/action-misspell)
 - [reviewdog/action-alex](https://github.com/reviewdog/action-alex)
 

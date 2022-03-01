@@ -1,7 +1,7 @@
 # yamllint disable rule:document-start
 # yamllint disable rule:line-length
-# Workflows which handle labels in repository issues and PRs
-name: Issues & PRs label management
+# Workflows which handle labels for repository issues and PRs
+name: Issues & PRs labeler
 
 'on':
   issues:

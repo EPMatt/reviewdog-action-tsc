@@ -14,8 +14,8 @@ jobs:
       - uses: reviewdog/action-depup@v1
         id: depup
         with:
-          file: script.sh
-          version_name: REVIEWDOG_VERSION
+          file: action.yml
+          version_name: reviewdog_version
           repo: reviewdog/reviewdog
 
       - name: Create Pull Request
