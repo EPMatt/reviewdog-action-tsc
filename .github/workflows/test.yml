@@ -25,7 +25,7 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
-          level: warning
+          level: error
           filter_mode: nofilter
           workdir: ./testdata
           tool_name: tsc-github-check
@@ -53,7 +53,7 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
-          level: warning
+          level: error
           filter_mode: nofilter
           workdir: ./testdata
           tool_name: tsc-github-pr-check
@@ -81,9 +81,8 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
-          level: warning
+          level: error
           filter_mode: nofilter
           workdir: ./testdata
           tool_name: tsc-github-pr-review
-          fail_on_error: true
           tsc_flags: --project failing
