@@ -43,7 +43,7 @@ inputs:
     required: false
   reporter:
     description: |
-      Reporter of reviewdog command [github-pr-check,github-pr-review].
+      Reporter of reviewdog command [github-check,github-pr-check,github-pr-review].
       Default is `github-pr-check`.
     default: 'github-pr-check'
     required: false
