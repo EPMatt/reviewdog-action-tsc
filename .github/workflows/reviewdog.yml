@@ -9,7 +9,7 @@ jobs:
     name: runner / shellcheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: reviewdog/action-shellcheck@v1
         with:
           reporter: github-check
@@ -19,7 +19,7 @@ jobs:
     name: runner / shfmt
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: reviewdog/action-shfmt@v1
         with:
           level: error
@@ -28,7 +28,7 @@ jobs:
     name: runner / actionlint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: reviewdog/action-actionlint@v1
         with:
           reporter: github-check
@@ -38,7 +38,7 @@ jobs:
     name: runner / misspell
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: reviewdog/action-misspell@v1
         with:
           reporter: github-check
@@ -49,7 +49,7 @@ jobs:
     name: runner / alex
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: reviewdog/action-alex@v1
         with:
           reporter: github-check
