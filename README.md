@@ -1,10 +1,10 @@
 # reviewdog-action-tsc
 
 ![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen) 
-[![Test](https://github.com/EPMatt/reviewdog-action-tsc/workflows/Tests/badge.svg)](https://github.com/EPMatt/reviewdog-action-tsc/actions?query=workflow%3ATest)
-[![Code Quality](https://github.com/EPMatt/reviewdog-action-tsc/workflows/Code%20Quality/badge.svg)](https://github.com/EPMatt/reviewdog-action-tsc/actions?query=workflow%3Areviewdog)
-[![Deps auto update](https://github.com/EPMatt/reviewdog-action-tsc/workflows/Deps%20auto%20update/badge.svg)](https://github.com/EPMatt/reviewdog-action-tsc/actions?query=workflow%3Adepup)
-[![Release](https://github.com/EPMatt/reviewdog-action-tsc/workflows/Release/badge.svg)](https://github.com/EPMatt/reviewdog-action-tsc/actions?query=workflow%3Arelease)
+[![Tests](https://github.com/EPMatt/reviewdog-action-tsc/actions/workflows/test.yml/badge.svg)](https://github.com/EPMatt/reviewdog-action-tsc/actions/workflows/test.yml)
+[![Code Quality](https://github.com/EPMatt/reviewdog-action-tsc/actions/workflows/reviewdog.yml/badge.svg)](https://github.com/EPMatt/reviewdog-action-tsc/actions/workflows/reviewdog.yml)
+[![Deps auto update](https://github.com/EPMatt/reviewdog-action-tsc/actions/workflows/depup.yml/badge.svg)](https://github.com/EPMatt/reviewdog-action-tsc/actions/workflows/depup.yml)
+[![Release](https://github.com/EPMatt/reviewdog-action-tsc/actions/workflows/release.yml/badge.svg)](https://github.com/EPMatt/reviewdog-action-tsc/actions/workflows/release.yml)
 [![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/EPMatt/reviewdog-action-tsc?logo=github&sort=semver)](https://github.com/EPMatt/reviewdog-action-tsc/releases)
 [![action-bumpr supported](https://img.shields.io/badge/bumpr-supported-ff69b4?logo=github&link=https://github.com/haya14busa/action-bumpr)](https://github.com/haya14busa/action-bumpr)
 
