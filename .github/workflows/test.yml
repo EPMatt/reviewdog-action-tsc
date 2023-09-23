@@ -9,7 +9,7 @@ jobs:
     name: runner / tsc (github-check)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./
         with:
           github_token: ${{ secrets.github_token }}
@@ -37,7 +37,7 @@ jobs:
     name: runner / tsc (github-pr-check)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./
         with:
           github_token: ${{ secrets.github_token }}
@@ -65,7 +65,7 @@ jobs:
     name: runner / tsc (github-pr-review)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./
         with:
           github_token: ${{ secrets.github_token }}
