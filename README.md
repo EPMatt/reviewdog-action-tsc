@@ -53,7 +53,7 @@ inputs:
       Default is `added`.
     default: 'added'
     required: false
-  fail_on_error:
+  fail_level:
     description: |
       If set to `none`, always use exit code 0 for reviewdog. Otherwise, exit code 1 for reviewdog if it finds at least 1 issue with severity greater than or equal to the given level.
       Possible values: [none,any,info,warning,error]
