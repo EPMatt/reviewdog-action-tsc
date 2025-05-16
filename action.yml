@@ -60,9 +60,9 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - uses: reviewdog/action-setup@v1
+    - uses: reviewdog/action-setup@v1.3.2
       with:
-        reviewdog_version: v0.17.4
+        reviewdog_version: v0.20.3
     - run: $GITHUB_ACTION_PATH/script.sh
       shell: bash
       env:
@@ -71,7 +71,7 @@ runs:
         INPUT_LEVEL: ${{ inputs.level }}
         INPUT_REPORTER: ${{ inputs.reporter }}
         INPUT_FILTER_MODE: ${{ inputs.filter_mode }}
-        INPUT_FAIL_ON_ERROR: ${{ inputs.fail_on_error }}
+        INPUT_FAIL_LEVEL: ${{ inputs.fail_level }}
         INPUT_REVIEWDOG_FLAGS: ${{ inputs.reviewdog_flags }}
         INPUT_TOOL_NAME: ${{ inputs.tool_name }}
         INPUT_TSC_FLAGS: ${{ inputs.tsc_flags }}
